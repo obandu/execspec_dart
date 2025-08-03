@@ -1,0 +1,11 @@
+name: execspec_dart
+description: The Executable Specification Wrapper for Dart
+version: 1.02.08
+repository: https://github.com/obandu/execspec_dart
+
+environment:
+  sdk: 3.8.1
+
+dev_dependencies:
+  test: 1.26.2
+  test_process: 2.1.0 
