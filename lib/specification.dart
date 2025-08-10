@@ -1,4 +1,6 @@
+part of execspec_dart;
+
 abstract class Specification {
-  dynamic validateIt();
   dynamic defineIt();
+  dynamic validateIt();
 }

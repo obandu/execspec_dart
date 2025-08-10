@@ -1,6 +1,4 @@
-import 'package:test/test.dart';
-
-import 'specification.dart';
+part of execspec_dart;
 
 class Behaviour implements Specification {
   final String objective;
@@ -10,33 +8,45 @@ class Behaviour implements Specification {
 
   @override
   validateIt() {
+    TestRecord testRecord = TestRecord(); // get an instance of TestRecord
+
+    // if definedby is null, then the test is not defined
+    if (definedby == null) {
+      testRecord.addTestResult(
+        objective: objective,
+        testName: "Test is NOT DEFINED",
+        expected: "Not Defined",
+        actual: "Not Defined",
+        testResult: "NOT IMPLEMENTED",
+      );
+      return;
+    }
+
     // test assertion wrapper
     test(objective, () async {
-      if (definedby == null) {
-        print(
-          "\n--OBJECTIVE : '$objective': \n --Test is NOT DEFINED \n--- END OBJECTIVE\n",
-        );
-        return;
-      }
-
       // get the values from the function defining the test
       dynamic testResults = await definedby();
-      print(
-        "\n--OBJECTIVE : '$objective': \n --Test results are $testResults--",
-      );
+
       for (var result in testResults) {
         try {
           expect(result["actual"], result["expected"]);
-          print(
-            "Test for ${result["name"]} =MATCHES= ${result["expected"]} ..PASSED",
+          testRecord.addTestResult(
+            objective: objective,
+            testName: result["name"],
+            expected: result["expected"],
+            actual: result["actual"],
+            testResult: "PASSED",
           );
         } catch (ex) {
-          print(
-            "Test for ${result["name"]} =MATCHES= ${result["expected"]} ..FAILED",
+          testRecord.addTestResult(
+            objective: objective,
+            testName: result["name"],
+            expected: result["expected"],
+            actual: result["actual"],
+            testResult: "FAILED",
           );
         }
       }
-      print("-----END OBJECTIVE\n");
     });
   }
 

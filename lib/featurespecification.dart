@@ -1,17 +1,12 @@
-import 'behaviour.dart';
-import 'specification.dart';
+part of execspec_dart;
 
-class FeatureSpecification extends Specification {
+class FeatureSpecification implements Specification {
   String name;
   List<Behaviour> behaviours = [];
   FeatureSpecification({required this.name});
 
   @override
-  defineIt() {
-    for (Behaviour behaviourSpecification in behaviours) {
-      behaviourSpecification.defineIt();
-    }
-  }
+  defineIt() {}
 
   @override
   validateIt() {
