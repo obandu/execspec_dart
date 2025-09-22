@@ -1,9 +1,10 @@
+// import 'package:execspec_dart/example/specifications/execspec_sample_spec.dart';
 import 'package:test/test.dart';
 import 'package:test_process/test_process.dart';
 
 import 'package:execspec_dart/execspec_dart.dart';
 
-import '../specifications/execspec_sample_spec.dart';
+import '../lib/example/specifications/execspec_sample_spec.dart';
 
 void main() {
   late TestRecord testRecord;

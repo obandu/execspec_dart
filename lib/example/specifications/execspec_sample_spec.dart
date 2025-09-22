@@ -1,7 +1,5 @@
 import 'package:execspec_dart/execspec_dart.dart';
 
-import 'spec_implementation/mathfunctionspec.dart';
-
 class ExecSpecSampleSpecification extends ApplicationSpecification {
   ExecSpecSampleSpecification()
     : super(
@@ -10,7 +8,7 @@ class ExecSpecSampleSpecification extends ApplicationSpecification {
       );
 
   @override
-  Future<void> validateIt() async {
+  dynamic validateIt() {
     // Implement validation logic for the sample application
     print('Validating ExecSpec Sample Application...');
     // Add your validation logic here

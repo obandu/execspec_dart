@@ -14,3 +14,6 @@ That brings us to the 'Dart Exec Spec' or the executable specification wrapper f
 Notes:
 a) With this test wrapper, all tests are shown as passed even when not passed.
 b) Mocking is not yet implemented
+
+Usage:
+>dart test -p vm --plain-name "Whole Application"
