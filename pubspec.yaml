@@ -1,6 +1,6 @@
 name: execspec_dart
 description: The Executable Specification Wrapper for Dart
-version: 1.04.22
+version: 1.06.20
 repository: https://github.com/obandu/execspec_dart
 
 # The following line prevents the package from being accidentally published to
@@ -8,8 +8,8 @@ repository: https://github.com/obandu/execspec_dart
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: 3.9.2
+  sdk: 3.12.1
 
 dev_dependencies:
-  test: 1.26.3
+  test: 1.31.1
   test_process: 2.1.1 

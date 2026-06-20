@@ -31,8 +31,10 @@ class TestRecord {
     });
   }
 
-  void printTestResults() {
-    Map<String, Map<String, dynamic>> testSummary = {};
+  String printTestResults() {
+    final testSummary = <String, Map<String, dynamic>>{};
+    var testResultsPrintout = "";
+
     for (var result in testResults) {
       String objective = result['objective'];
       if (!testSummary.containsKey(objective)) {
@@ -54,23 +56,38 @@ class TestRecord {
       }
     }
 
-    print("Test Name: $testName");
-    print("Test Date: $testDate");
-    print("Test Results (DETAILS):");
-    print("Objective | Test Name |  Expected  |  Actual  | Result \n");
+    testResultsPrintout += "Test Name: $testName\n";
+    testResultsPrintout += "Test Date: $testDate\n";
+    testResultsPrintout += "Test Results (DETAILS):\n";
+    testResultsPrintout +=
+        "Objective | Test Name |  Expected  |  Actual  | Result \n";
     for (var result in testResults) {
-      print(
-        "${result['objective']} | ${result['testname']}  | ${result['expected']}  |  ${result['actual']}  |  ${result['result']}",
-      );
+      testResultsPrintout +=
+          "${result['objective']} | ${result['testname']}  | ${result['expected']}  |  ${result['actual']}  |  ${result['result']}\n";
     }
-    print("\nTest Results (SUMMARY):");
-    print("Objective | Count | Fails | Passes | Not Implemented");
+    testResultsPrintout += "\nTest Results (SUMMARY):\n";
+    testResultsPrintout +=
+        "Objective | Count | Fails | Passes | Not Implemented\n";
     for (var entry in testSummary.entries) {
       String objective = entry.key;
       Map<String, dynamic> summary = entry.value;
-      print(
-        "$objective | ${summary['count']} | ${summary['fails']} | ${summary['passes']} | ${summary['not implemented']}",
-      );
+      testResultsPrintout +=
+          "$objective | ${summary['count']} | ${summary['fails']} | ${summary['passes']} | ${summary['not implemented']}\n";
+    }
+
+    return testResultsPrintout;
+  }
+
+  dynamic saveTestResults({
+    required String testResults,
+    required String fileName,
+  }) async {
+    File file = File(fileName);
+    try {
+      await file.writeAsString(testResults);
+      print("Test results successfully written to : $fileName");
+    } catch (ex) {
+      print("Saving test results to $fileName brings error $ex");
     }
   }
 

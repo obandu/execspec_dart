@@ -1,6 +1,7 @@
 library execspec_dart;
 
 import 'package:test/test.dart';
+import 'dart:io';
 
 part 'applicationspecification.dart';
 part 'behaviour.dart';
